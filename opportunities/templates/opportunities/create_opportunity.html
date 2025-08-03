@@ -1,0 +1,13 @@
+{% extends "opportunities/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Post Opportunity{% endblock %}
+{% block content %}
+<div class="col-md-6 offset-md-3">
+    <h2 class="mb-4">Post a New Opportunity</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary w-100">Post</button>
+    </form>
+</div>
+{% endblock %}

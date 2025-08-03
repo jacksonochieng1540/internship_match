@@ -1,0 +1,66 @@
+{% extends "opportunities/base.html" %}
+{% block title %}Opportunities{% endblock %}
+{% block content %}
+<h2 class="mb-4">Available Opportunities</h2>
+
+<!-- Search & Filter Form -->
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+        <input type="text" name="q" placeholder="Search by title, skills..." value="{{ query }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="text" name="location" placeholder="Location" value="{{ location }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <select name="job_type" class="form-select">
+            <option value="">Job Type</option>
+            <option value="internship" {% if job_type == 'internship' %}selected{% endif %}>Internship</option>
+            <option value="full-time" {% if job_type == 'full-time' %}selected{% endif %}>Full-time</option>
+            <option value="part-time" {% if job_type == 'part-time' %}selected{% endif %}>Part-time</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="skill" class="form-select">
+            <option value="">Skill</option>
+            {% for s in skill_list %}
+                <option value="{{ s }}" {% if skill == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="sort" class="form-select">
+            <option value="">Sort By</option>
+            <option value="latest" {% if sort == 'latest' %}selected{% endif %}>Latest</option>
+            <option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>Oldest</option>
+            <option value="deadline" {% if sort == 'deadline' %}selected{% endif %}>Deadline Soon</option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">Go</button>
+    </div>
+</form>
+
+{% if opportunities %}
+    <div class="row">
+        {% for opp in opportunities %}
+        <div class="col-md-6">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ opp.title }}</h5>
+                    <p class="card-text">{{ opp.description|truncatechars:120 }}</p>
+                    <p><strong>Skills:</strong> {{ opp.skills_required }}</p>
+                    <p><strong>Location:</strong> {{ opp.location }}</p>
+                    <p><strong>Type:</strong> {{ opp.get_job_type_display }}</p>
+                    <p><strong>Deadline:</strong> {{ opp.deadline }}</p>
+                    {% if user.is_authenticated and user.user_type == 'student' %}
+                        <a href="{% url 'apply_to_opportunity' opp.id %}" class="btn btn-primary">Apply</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No opportunities found.</p>
+{% endif %}
+{% endblock %}

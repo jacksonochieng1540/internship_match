@@ -1,0 +1,60 @@
+{% extends "applications/base.html" %}
+{% block title %}Company Dashboard{% endblock %}
+{% block content %}
+<h2>Applications Received</h2>
+
+<!-- Filters & Export -->
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <select name="status" class="form-select" onchange="this.form.submit()">
+            <option value="">All Status</option>
+            <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="accepted" {% if status_filter == 'accepted' %}selected{% endif %}>Accepted</option>
+            <option value="rejected" {% if status_filter == 'rejected' %}selected{% endif %}>Rejected</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <a href="?status={{ status_filter }}&export=excel" class="btn btn-outline-success w-100">Export to Excel</a>
+    </div>
+</form>
+
+{% if applications %}
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Student</th>
+                <th>Opportunity</th>
+                <th>Status</th>
+                <th>Applied At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in applications %}
+            <tr>
+                <td>{{ app.student.username }}</td>
+                <td>{{ app.opportunity.title }}</td>
+                <td>
+                    {% if app.status == 'pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% elif app.status == 'accepted' %}
+                        <span class="badge bg-success">Accepted</span>
+                    {% else %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </td>
+                <td>{{ app.applied_at|date:"M d, Y H:i" }}</td>
+                <td>
+                    {% if app.status == 'pending' %}
+                        <a href="{% url 'update_application_status' app.id 'accepted' %}" class="btn btn-success btn-sm">Accept</a>
+                        <a href="{% url 'update_application_status' app.id 'rejected' %}" class="btn btn-danger btn-sm">Reject</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No applications found.</p>
+{% endif %}
+{% endblock %}

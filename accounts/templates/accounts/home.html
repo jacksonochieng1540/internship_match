@@ -1,0 +1,9 @@
+{% extends "accounts/base.html" %}
+{% block title %}Home - Internship Match{% endblock %}
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to Internship Match</h1>
+    <p class="lead">Connecting students with companies for career opportunities.</p>
+    <a href="{% url 'opportunity_list' %}" class="btn btn-primary btn-lg">Browse Opportunities</a>
+</div>
+{% endblock %}

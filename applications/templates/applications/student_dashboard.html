@@ -1,0 +1,56 @@
+{% extends "applications/base.html" %}
+{% block title %}My Applications{% endblock %}
+{% block content %}
+<h2>My Applications</h2>
+
+<!-- Filter -->
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <select name="status" class="form-select" onchange="this.form.submit()">
+            <option value="">All Status</option>
+            <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="accepted" {% if status_filter == 'accepted' %}selected{% endif %}>Accepted</option>
+            <option value="rejected" {% if status_filter == 'rejected' %}selected{% endif %}>Rejected</option>
+        </select>
+    </div>
+</form>
+
+{% if applications %}
+<table class="table table-bordered table-hover">
+    <thead class="table-info">
+        <tr>
+            <th>Opportunity</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Applied At</th>
+            <th>Receipt</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.opportunity.title }}</td>
+            <td>{{ app.opportunity.company.username }}</td>
+            <td>
+                {% if app.status == 'pending' %}
+                    <span class="badge bg-warning">Pending</span>
+                {% elif app.status == 'accepted' %}
+                    <span class="badge bg-success">Accepted</span>
+                {% else %}
+                    <span class="badge bg-danger">Rejected</span>
+                {% endif %}
+            </td>
+            <td>{{ app.applied_at|date:"M d, Y H:i" }}</td>
+            <td>
+                <a href="{% url 'download_application_pdf' app.id %}" class="btn btn-outline-secondary btn-sm">
+                    PDF Receipt
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You haven't applied to any opportunities yet.</p>
+{% endif %}
+{% endblock %}
