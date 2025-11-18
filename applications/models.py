@@ -13,8 +13,8 @@ class Application(models.Model):
     opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE)
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField()
-    portfolio = models.FileField(upload_to='portfolios/', blank=True, null=True)  # NEW
-    certificates = models.FileField(upload_to='certificates/', blank=True, null=True)  # NEW
+    portfolio = models.FileField(upload_to='portfolios/', blank=True, null=True)  
+    certificates = models.FileField(upload_to='certificates/', blank=True, null=True)  
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     applied_at = models.DateTimeField(auto_now_add=True)
 
