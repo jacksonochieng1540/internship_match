@@ -8,3 +8,5 @@ class ApplicationForm(forms.ModelForm):
         widgets = {
             'cover_letter': forms.Textarea(attrs={'rows': 4}),
         }
+
+
