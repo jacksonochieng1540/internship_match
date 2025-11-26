@@ -32,7 +32,7 @@ class CompanyRegistrationForm(UserCreationForm):
         user = super().save(commit=False)
         user.user_type = 'company'
         user.company_name = self.cleaned_data['company_name']
-        user.company_website = self.cleaned_data.get('company_website', '')
+        user.company_website = self.cleaned_data.get('company_website', '')   
         if commit:
             user.save()
         return user
