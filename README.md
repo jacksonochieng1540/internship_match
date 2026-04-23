@@ -13,13 +13,13 @@ Includes features for:
 ---
 
 ## Features
-✅ Student & company authentication  
-✅ Internship application management  
-✅ PDF receipt generation & email sending  
-✅ Profile photo & bio support  
-✅ Filter & search for opportunities  
-✅ Export data to Excel  
-✅ Docker + Nginx production-ready setup  
+ Student & company authentication  
+Internship application management  
+PDF receipt generation & email sending  
+Profile photo & bio support  
+Filter & search for opportunities  
+Export data to Excel  
+Docker + Nginx production-ready setup  
 
 ---
 
