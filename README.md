@@ -34,35 +34,35 @@ Docker + Nginx production-ready setup
 
 ## Installation (Local Development)
 
-### 1️⃣ Clone the repository
+###  Clone the repository
 ```bash
 git clone https://github.com/yourusername/internship_platform.git
 cd internship_platform
 
 
-2️⃣ Create a virtual environment
+ Create a virtual environment
 bash
 Copy
 Edit
 python -m venv venv
 source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
-3️⃣ Install dependencies
+ Install dependencies
 bash
 Copy
 Edit
 pip install -r requirements.txt
-4️⃣ Apply migrations
+Apply migrations
 bash
 Copy
 Edit
 python manage.py migrate
-5️⃣ Create a superuser
+##Create a superuser
 bash
 Copy
 Edit
 python manage.py createsuperuser
-6️⃣ Run the development server
+## Run the development server
 bash
 Copy
 Edit
@@ -70,16 +70,16 @@ python manage.py runserver
 Visit: http://127.0.0.1:8000
 
 Docker Deployment (Production-Ready)
-1️⃣ Build & run containers
+## Build & run containers
 bash
 Copy
 Edit
 docker-compose build
 docker-compose up -d
-2️⃣ Access the application
+## Access the application
 Visit: http://localhost
 
-3️⃣ Stop containers
+## Stop containers
 bash
 Copy
 Edit
