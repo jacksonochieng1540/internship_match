@@ -88,14 +88,14 @@ docker-compose down
 
 
 internship_platform/
-│── accounts/           # Authentication & profile management
-│── applications/       # Internship applications
-│── opportunities/      # Internship listings
-│── templates/          # HTML templates
-│── static/              # CSS, JS, images
-│── media/               # Uploaded files
-│── nginx/               # Nginx config
-│── Dockerfile           # Django + Gunicorn build
-│── docker-compose.yml   # Multi-container setup
+│── accounts/           
+│── applications/      
+│── opportunities/     
+│── templates/          
+│── static/              
+│── media/               
+│── nginx/        
+│── Dockerfile          
+│── docker-compose.yml  
 │── requirements.txt
 │── README.md
