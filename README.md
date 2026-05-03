@@ -41,48 +41,33 @@ cd internship_platform
 
 
  Create a virtual environment
-bash
-Copy
-Edit
 python -m venv venv
 source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
  Install dependencies
-bash
-Copy
-Edit
+
 pip install -r requirements.txt
 Apply migrations
-bash
-Copy
-Edit
+
 python manage.py migrate
 ##Create a superuser
-bash
-Copy
-Edit
+
 python manage.py createsuperuser
 ## Run the development server
-bash
-Copy
-Edit
+
 python manage.py runserver
 Visit: http://127.0.0.1:8000
 
 Docker Deployment (Production-Ready)
 ## Build & run containers
-bash
-Copy
-Edit
+
 docker-compose build
 docker-compose up -d
 ## Access the application
 Visit: http://localhost
 
 ## Stop containers
-bash
-Copy
-Edit
+
 docker-compose down
 
 
