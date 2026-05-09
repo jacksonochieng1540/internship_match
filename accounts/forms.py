@@ -24,7 +24,7 @@ class CompanyRegistrationForm(UserCreationForm):
     company_name = forms.CharField(required=True)
     company_website = forms.URLField(required=False)
 
-    class Meta:
+    class Meta:   
         model = User
         fields = ['username', 'email', 'company_name', 'company_website', 'password1', 'password2']
 
