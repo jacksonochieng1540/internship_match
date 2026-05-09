@@ -185,7 +185,7 @@ def download_applications_zip(request, opportunity_id):
     zip_filename = f"{opportunity.title.replace(' ', '_')}_applications.zip"
     zip_path = os.path.join(settings.MEDIA_ROOT, zip_filename)
 
-    with zipfile.ZipFile(zip_path, 'w') as zipf:
+    with zipfile.ZipFile(zip_path, 'w') as zipf:   
         for app in applications:
             if app.resume:
                 zipf.write(app.resume.path, f"{app.student.username}/resume_{os.path.basename(app.resume.name)}")
