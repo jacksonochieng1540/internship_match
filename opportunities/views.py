@@ -36,27 +36,23 @@ def opportunity_list(request):
             Q(description__icontains=query)
         )
 
-    # Location filter
     if location:
         opportunities = opportunities.filter(location__icontains=location)
 
-    # Job type filter
     if job_type:
         opportunities = opportunities.filter(job_type=job_type)
 
-    # Skills filter
     if skill:
         opportunities = opportunities.filter(skills_required__icontains=skill)
 
-    # Sorting
+
     if sort == 'oldest':
         opportunities = opportunities.order_by('created_at')
     elif sort == 'deadline':
         opportunities = opportunities.order_by('deadline')
-    else:  # Default to latest
+    else:  
         opportunities = opportunities.order_by('-created_at')
 
-    # Get unique skills for dropdown
     skill_list = Opportunity.objects.values_list('skills_required', flat=True).distinct()
 
     return render(request, 'opportunities/opportunity_list.html', {
