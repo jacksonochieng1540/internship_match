@@ -56,15 +56,14 @@ python manage.py createsuperuser
 ## Run the development server
 
 python manage.py runserver
-Visit: http://127.0.0.1:8000
+go to the url: http://127.0.0.1:8000
 
 Docker Deployment (Production-Ready)
 ## Build & run containers
 
 docker-compose build
 docker-compose up -d
-## Access the application
-Visit: http://localhost
+
 
 ## Stop containers
 
