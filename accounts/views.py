@@ -9,9 +9,7 @@ from .models import User
 
 def home(request):
     return render(request, 'accounts/home.html')
-# ---------------------------
-# REGISTER STUDENT
-# ---------------------------
+
 def register_student(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -30,9 +28,7 @@ def register_student(request):
     return render(request, 'accounts/register_student.html', {'form': form})
 
 
-# ---------------------------
-# REGISTER COMPANY
-# ---------------------------
+
 def register_company(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -51,9 +47,7 @@ def register_company(request):
     return render(request, 'accounts/register_company.html', {'form': form})
 
 
-# ---------------------------
-# LOGIN VIEW
-# ---------------------------
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -77,9 +71,7 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'form': form})
 
 
-# ---------------------------
-# LOGOUT VIEW
-# ---------------------------
+
 @login_required
 def logout_view(request):
     logout(request)
@@ -87,9 +79,7 @@ def logout_view(request):
     return redirect('login')
 
 
-# ---------------------------
-# DASHBOARD REDIRECT
-# ---------------------------
+
 @login_required
 def dashboard_redirect(request):
     if request.user.user_type == 'student':
@@ -99,17 +89,12 @@ def dashboard_redirect(request):
     return redirect('home')
 
 
-# ---------------------------
-# PROFILE VIEW
-# ---------------------------
+
 @login_required
 def profile_view(request):
     return render(request, 'accounts/profile.html', {'user': request.user})
 
 
-# ---------------------------
-# EDIT PROFILE
-# ---------------------------
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
